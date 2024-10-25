@@ -21,8 +21,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "storybook": "storybook dev -p 6006 public",
-    "build-storybook": "storybook build public",
+    "storybook": "storybook dev -p 6006 storybook-static",
+    "build-storybook": "storybook build storybook-static",
     "serve-storybook": "npx serve storybook-static",
     "init-msw": "msw init public/"
 },

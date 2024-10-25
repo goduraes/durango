@@ -23,7 +23,7 @@
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006 public",
     "build-storybook": "storybook build public",
-    "serve-storybook": "npx serve ./.storybook",
+    "serve-storybook": "npx serve storybook-static",
     "init-msw": "msw init public/"
 },
   "devDependencies": {

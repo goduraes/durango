@@ -6,7 +6,7 @@ import './Button.scss';
  * Primary UI component for user interaction
  */
 
-const Button = ({ primary, backgroundColor, size, label, ...props }) => {
+const Button = ({ primary, backgroundColor, size, label, ...props }: any) => {
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
   return (
     <button

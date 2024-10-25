@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import './button.css';
+import './button.scss';
 
 /**
  * Primary UI component for user interaction
  */
 
-export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
+const Button = ({ primary, backgroundColor, size, label, ...props }) => {
   const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
   return (
     <button
@@ -18,6 +18,8 @@ export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
     </button>
   );
 };
+
+export default Button;
 
 Button.propTypes = {
   /**

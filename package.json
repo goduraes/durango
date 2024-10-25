@@ -4,6 +4,7 @@
   "description": "Durango Design System",
   "author": "Gabriel Durães",
   "type": "module",
+  "keywords": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/goduraes/durango"
@@ -18,15 +19,15 @@
     "react-dom": "^18.2.0"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
     "storybook": "sb dev -p 6006 public",
     "build-storybook": "sb build public",
     "serve-storybook": "npx serve storybook-static",
     "init-msw": "msw init public/"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-typescript": "^12.1.1",
     "@storybook/addon-essentials": "^8.3.6",
     "@storybook/addon-interactions": "^8.3.6",
     "@storybook/addon-links": "^8.3.6",
@@ -34,8 +35,8 @@
     "@storybook/react": "^8.3.6",
     "@storybook/react-vite": "^8.3.6",
     "@storybook/test": "^8.3.6",
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.57.0",
     "eslint-plugin-react": "^7.34.1",
@@ -46,7 +47,8 @@
     "msw-storybook-addon": "^2.0.3",
     "prop-types": "^15.8.1",
     "storybook": "^8.3.6",
-    "vite": "^5.2.0"
+    "typescript": "^5.6.3",
+    "vite": "^5.4.10"
   },
   "resolutions": {
     "jackspeak": "2.1.1"

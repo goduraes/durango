@@ -18,11 +18,7 @@ const config: StorybookConfig = {
     autodocs: 'tag'
   },
   typescript: {
-    reactDocgen: 'react-docgen-typescript',
-    reactDocgenTypescriptOptions: {
-      shouldExtractLiteralValuesFromEnum: true,
-      propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
-    },
+    reactDocgen: 'react-docgen',
   },
 };
 export default config;

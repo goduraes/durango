@@ -1,10 +1,10 @@
 import { fn } from '@storybook/test';
 import { StoryObj, Meta } from '@storybook/react'
 import React from 'react';
-import { DuButtonType } from './Button.types';
 import DuButton from './Button';
+import { DuButtonType } from './Button.types';
 
-const meta: Meta<DuButtonType> = {
+export default {
   title: 'Components/Button',
   component: DuButton,
   parameters: {
@@ -12,25 +12,25 @@ const meta: Meta<DuButtonType> = {
   },
   tags: ['autodocs'],
   argTypes: {
-    size: { control: 'select', description: 'Tamanho do botão' },
-    variant: { control: 'text', description: 'Cor do botão' },
+    size: { control: 'select', },
+    variant: { control: 'text', },
+    color: { control: 'text', },
   },
 };
-
-export default meta;
 
 type Story = StoryObj<DuButtonType & { text: string }>;
 export const Exemplo: Story = {
   args: { 
     text: 'Button',
-    variant: 'blue',
+    variant: 'primary',
+    color: 'light',
     size: 'md',
-    onClick: fn()
   },
   render: ({ ...args }) => {
     return (
       <DuButton 
         variant={args.variant}
+        color={args.color}
         size={args.size}
         onClick={args.onClick}
       >

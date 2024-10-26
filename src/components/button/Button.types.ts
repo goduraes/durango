@@ -1,5 +1,8 @@
-import { ButtonHTMLAttributes } from "react";
 import { BaseColorsType } from "../../colors";
-
-export type DuButtonType = ButtonHTMLAttributes<HTMLButtonElement> & { variant: BaseColorsType, size: DuButtonSizeType };
+export interface DuButtonType extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>{
+    variant?: BaseColorsType | string,
+    color?: BaseColorsType | string,
+    size?: DuButtonSizeType
+}
+  
 export type DuButtonSizeType = 'xs' | 'sm' | 'md' | 'lg' | 'xl';

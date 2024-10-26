@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { DuButtonSizeType } from './Button.types'
-import { base, BaseColorsType } from "../../colors";
+import { base, baseTextButton, BaseColorsType } from "../../colors";
 
 const getHeight = (size: DuButtonSizeType) => {
     if (size === 'xs') return '32px';
@@ -10,16 +10,23 @@ const getHeight = (size: DuButtonSizeType) => {
     return '52px';
 };
 
-const getColor= (val: BaseColorsType): string => {
-    return base[val] || val;
+const getBgColor= (val: BaseColorsType | string): string => {
+  if(!base.hasOwnProperty(val)) return val;
+  return base[val as BaseColorsType];
 }
 
-const Button = styled.button<{ $variant: BaseColorsType, size: DuButtonSizeType }>`
-  height: ${props => getHeight(props.size)};
-  background: ${props => getColor(props.$variant)};
-  color: #fff;
+const getColor= (color: BaseColorsType | string, bgCOlor: BaseColorsType | string): string => {
+  if(base.hasOwnProperty(bgCOlor)) return baseTextButton[bgCOlor as BaseColorsType];
+  if(color && base.hasOwnProperty(color))  return base[color as BaseColorsType];
+  return color;
+}
+
+const Button = styled.button<{ $variant: BaseColorsType | string, $color: BaseColorsType | string,  $size: DuButtonSizeType }>`
+  height: ${props => getHeight(props.$size)};
+  background: ${props => getBgColor(props.$variant)};
+  color: ${props => getColor(props.$color, props.$variant)};
   padding: 0.25em 1em;
-  border-radius: 3px;
+  border-radius: 8px;
   outline: none;
   border: none;
 `;

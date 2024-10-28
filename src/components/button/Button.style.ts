@@ -3,32 +3,62 @@ import { DuButtonSizeType } from './Button.types'
 import { base, baseTextButton, BaseColorsType } from "../../colors";
 
 const getHeight = (size: DuButtonSizeType) => {
-    if (size === 'xs') return '32px';
-    if (size === 'sm') return '36px';
-    if (size === 'md') return '40px';
-    if (size === 'lg') return '48px';
-    return '52px';
+    if (size === 'sm') return 'height: 32px';
+    if (size === 'md') return 'height: 40px';
+    return 'height: 48px';
 };
 
-const getBgColor= (val: BaseColorsType | string): string => {
-  if(!base.hasOwnProperty(val)) return val;
-  return base[val as BaseColorsType];
-}
-
-const getColor= (color: BaseColorsType | string, bgCOlor: BaseColorsType | string): string => {
-  if(base.hasOwnProperty(bgCOlor)) return baseTextButton[bgCOlor as BaseColorsType];
-  if(color && base.hasOwnProperty(color))  return base[color as BaseColorsType];
-  return color;
+const getVariant = (props: any): string => {
+  const bgColor = base[props.$color as BaseColorsType] ?? props.$color;
+  const color = baseTextButton[props.$color as BaseColorsType] ?? '#fff';
+  let style = ``
+  
+  if (props.$variant === 'solid') {
+    style += `
+      background: ${bgColor}; 
+      color: ${color}; border: none;
+    `;
+  }
+  
+  if(props.$variant === 'outlined' || props.$variant === 'dashed') {
+    style += `
+      background: transparent; 
+      color: ${bgColor}; 
+      border: 1px ${(props.$variant === 'outlined' ? 'solid' : 'dashed')} ${bgColor};
+    `;
+  }
+  
+  if(props.$variant === 'link') {
+    style += `
+      background: transparent; 
+      color: ${bgColor}; 
+      border: none;
+    `;
+  }
+  
+  return style;
 }
 
 const Button = styled.button<{ $variant: BaseColorsType | string, $color: BaseColorsType | string,  $size: DuButtonSizeType }>`
-  height: ${props => getHeight(props.$size)};
-  background: ${props => getBgColor(props.$variant)};
-  color: ${props => getColor(props.$color, props.$variant)};
+  ${props => getHeight(props.$size)};
+  ${props => getVariant(props)};
+  font-size: ${props => props.$size === 'lg' ? '16px' : '14px'};
   padding: 0.25em 1em;
   border-radius: 8px;
   outline: none;
-  border: none;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.9;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 `;
 
 export default Button;

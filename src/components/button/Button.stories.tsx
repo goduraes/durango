@@ -1,5 +1,4 @@
-import { fn } from '@storybook/test';
-import { StoryObj, Meta } from '@storybook/react'
+import { StoryObj } from '@storybook/react'
 import React from 'react';
 import DuButton from './Button';
 import { DuButtonType } from './Button.types';
@@ -22,9 +21,10 @@ type Story = StoryObj<DuButtonType & { text: string }>;
 export const Exemplo: Story = {
   args: { 
     text: 'Button',
-    variant: 'primary',
-    color: 'light',
+    variant: 'solid',
+    color: 'primary',
     size: 'md',
+    disabled: false,
   },
   render: ({ ...args }) => {
     return (
@@ -32,6 +32,7 @@ export const Exemplo: Story = {
         variant={args.variant}
         color={args.color}
         size={args.size}
+        disabled={args.disabled}
         onClick={args.onClick}
       >
         {args.text}

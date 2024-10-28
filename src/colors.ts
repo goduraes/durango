@@ -14,12 +14,12 @@ const base = {
 
 const baseTextButton = {
     primary: '#fff',
-    secondary: "#1f2937",
+    secondary: "#fff",
     success: '#fff',
     danger: '#fff',
     warning: '#1f2937',
     info: '#1f2937',
-    disabled: '#fff',
+    disabled: '#999',
     light: '#1f2937',
     dark: '#fff'
 }

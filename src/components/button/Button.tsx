@@ -5,14 +5,21 @@ import PropTypes from 'prop-types';
 
 const DuButton = (data: DuButtonType) => {
   const { 
-    variant = 'primary',
-    color = 'light',
+    variant = 'solid',
+    color = 'primary',
     size = 'md', 
+    disabled = false,
     ...props 
   } = data;
   
   return (
-    <Button $variant={variant} $color={color} $size={size} {...props}>
+    <Button 
+      $variant={variant} 
+      $color={disabled ? 'disabled' : color} 
+      $size={size} 
+      disabled={disabled} 
+      {...props}
+    >
       {props.children}
     </Button>
   );
@@ -20,11 +27,8 @@ const DuButton = (data: DuButtonType) => {
 export default DuButton;
 
 DuButton.propTypes = {
-  size: PropTypes.oneOf(['xs', 'sm', 'md', 'lg', 'xl']),
-  variant: PropTypes.oneOfType([
-    PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'disabled', 'light', 'dark']),
-    PropTypes.string
-  ]),
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  variant: PropTypes.oneOf(['solid', 'outlined', 'dashed', 'link']),
   color: PropTypes.oneOfType([
     PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'disabled', 'light', 'dark']),
     PropTypes.string

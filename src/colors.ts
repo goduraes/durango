@@ -7,24 +7,11 @@ const base = {
     danger: '#e02424',
     warning: '#e3a008',
     info: '#138496',
-    disabled: '#e2e6ea',
+    disabled: '#d1d5db',
     light: '#ffffff',
     dark: '#1f2937'
 }
 
-const baseTextButton = {
-    primary: '#fff',
-    secondary: "#fff",
-    success: '#fff',
-    danger: '#fff',
-    warning: '#1f2937',
-    info: '#1f2937',
-    disabled: '#999',
-    light: '#1f2937',
-    dark: '#fff'
-}
-
 export {
     base,
-    baseTextButton
 }

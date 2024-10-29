@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { DuButtonSizeType } from './Button.types'
-import { base, baseTextButton, BaseColorsType } from "../../colors";
+import { base, BaseColorsType } from "../../colors";
 
 const getHeight = (size: DuButtonSizeType) => {
     if (size === 'sm') return 'height: 32px';
@@ -8,15 +8,25 @@ const getHeight = (size: DuButtonSizeType) => {
     return 'height: 48px';
 };
 
+const getTextColor = (color: string) => {
+  let shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+  color = color.replace(shorthandRegex, (m, r, g, b) => {
+      return r + r + g + g + b + b;
+  });
+  let rgb: any = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(color);
+  rgb = (rgb ? { r: parseInt(rgb[1], 16), g: parseInt(rgb[2], 16), b: parseInt(rgb[3], 16) } : { r: 0, g: 0, b: 0 });
+  return '#' + (Math.round(((parseInt(rgb.r) * 299) + (parseInt(rgb.g) * 587) + (parseInt(rgb.b) * 114)) /1000) > 150 ? "1f2937" : "FFF" );
+}
+
 const getVariant = (props: any): string => {
   const bgColor = base[props.$color as BaseColorsType] ?? props.$color;
-  const color = baseTextButton[props.$color as BaseColorsType] ?? '#fff';
   let style = ``
   
   if (props.$variant === 'solid') {
     style += `
       background: ${bgColor}; 
-      color: ${color}; border: none;
+      color: ${getTextColor(props.$color)};
+      border: none;
     `;
   }
   
@@ -31,7 +41,7 @@ const getVariant = (props: any): string => {
   if(props.$variant === 'link') {
     style += `
       background: transparent; 
-      color: ${bgColor}; 
+      color: ${bgColor};
       border: none;
     `;
   }
@@ -48,12 +58,17 @@ const Button = styled.button<{ $variant: BaseColorsType | string, $color: BaseCo
   outline: none;
   cursor: pointer;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   &:hover {
     opacity: 0.9;
   }
 
   &:disabled {
     cursor: not-allowed;
+    pointer-events: none;
 
     &:hover {
       opacity: 1;

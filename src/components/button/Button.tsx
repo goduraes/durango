@@ -2,6 +2,7 @@ import React from 'react';
 import Button from './Button.style';
 import { DuButtonType } from './Button.types';
 import PropTypes from 'prop-types';
+import Loading from '../../assets/loading.svg';
 
 const DuButton = (data: DuButtonType) => {
   const { 
@@ -13,11 +14,11 @@ const DuButton = (data: DuButtonType) => {
   } = data;
   
   return (
-    <Button 
-      $variant={variant} 
-      $color={disabled ? 'disabled' : color} 
-      $size={size} 
-      disabled={disabled} 
+    <Button
+      $variant={variant}
+      $color={disabled ? "disabled" : color}
+      $size={size}
+      disabled={disabled}
       {...props}
     >
       {props.children}
@@ -33,4 +34,5 @@ DuButton.propTypes = {
     PropTypes.oneOf(['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'disabled', 'light', 'dark']),
     PropTypes.string
   ]),
+  disabled: PropTypes.bool,
 };

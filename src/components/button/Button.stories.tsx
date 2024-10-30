@@ -1,11 +1,11 @@
 import { StoryObj } from '@storybook/react'
 import React from 'react';
-import DuButton from './Button';
-import { DuButtonType } from './Button.types';
+import DgButton from './Button';
+import { DgButtonType } from './Button.types';
 
 export default {
   title: 'Components/Button',
-  component: DuButton,
+  component: DgButton,
   parameters: {
     layout: 'centered',
   },
@@ -17,7 +17,7 @@ export default {
   },
 };
 
-type Story = StoryObj<DuButtonType & { text: string }>;
+type Story = StoryObj<DgButtonType & { text: string }>;
 export const Exemplo: Story = {
   args: { 
     text: 'Button',
@@ -25,18 +25,21 @@ export const Exemplo: Story = {
     color: 'primary',
     size: 'md',
     disabled: false,
+    loading: false,
   },
+  
   render: ({ ...args }) => {
     return (
-      <DuButton 
+      <DgButton 
         variant={args.variant}
         color={args.color}
         size={args.size}
         disabled={args.disabled}
+        loading={args.loading}
         onClick={args.onClick}
       >
         {args.text}
-      </DuButton>
+      </DgButton>
     )
   }
 };

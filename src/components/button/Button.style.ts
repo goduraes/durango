@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { DuButtonSizeType } from './Button.types'
+import { DgButtonSizeType } from './Button.types'
 import { base, BaseColorsType } from "../../colors";
 
-const getHeight = (size: DuButtonSizeType) => {
+const getHeight = (size: DgButtonSizeType) => {
     if (size === 'sm') return 'height: 32px';
     if (size === 'md') return 'height: 40px';
     return 'height: 48px';
@@ -27,6 +27,7 @@ const getVariant = (props: any): string => {
       background: ${bgColor}; 
       color: ${getTextColor(props.$color)};
       border: none;
+      .DgLoading circle { fill: ${getTextColor(props.$color)}; }
     `;
   }
   
@@ -35,6 +36,7 @@ const getVariant = (props: any): string => {
       background: transparent; 
       color: ${bgColor}; 
       border: 1px ${(props.$variant === 'outlined' ? 'solid' : 'dashed')} ${bgColor};
+      .DgLoading circle { fill: ${bgColor}; }
     `;
   }
   
@@ -43,13 +45,14 @@ const getVariant = (props: any): string => {
       background: transparent; 
       color: ${bgColor};
       border: none;
+      .DgLoading circle { fill: ${bgColor}; }
     `;
   }
   
   return style;
 }
 
-const Button = styled.button<{ $variant: BaseColorsType | string, $color: BaseColorsType | string,  $size: DuButtonSizeType }>`
+const Button = styled.button<{ $variant: BaseColorsType | string, $color: BaseColorsType | string,  $size: DgButtonSizeType }>`
   ${props => getHeight(props.$size)};
   ${props => getVariant(props)};
   font-size: ${props => props.$size === 'lg' ? '16px' : '14px'};
@@ -57,7 +60,6 @@ const Button = styled.button<{ $variant: BaseColorsType | string, $color: BaseCo
   border-radius: 8px;
   outline: none;
   cursor: pointer;
-
   display: flex;
   justify-content: center;
   align-items: center;

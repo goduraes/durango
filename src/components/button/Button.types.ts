@@ -1,9 +1,10 @@
 import { BaseColorsType } from "../../colors";
-export interface DuButtonType extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>{
-    variant?: DuButtonVariantType,
+export interface DgButtonType extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>{
+    variant?: DgButtonVariantType,
     color?: BaseColorsType | string,
-    size?: DuButtonSizeType,
+    size?: DgButtonSizeType,
+    loading?: boolean
 }
   
-export type DuButtonSizeType = 'sm' | 'md' | 'lg';
-export type DuButtonVariantType = 'solid' | 'outlined' | 'dashed'  | 'link';
+export type DgButtonSizeType = 'sm' | 'md' | 'lg';
+export type DgButtonVariantType = 'solid' | 'outlined' | 'dashed'  | 'link';

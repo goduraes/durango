@@ -33,9 +33,9 @@ export const Exemplo: Story = {
         <DgModal open={isOpen} onClose={() => setIsOpen(false)}>
           <div
             style={{
-              background: "#fff",
+              background: "#eee",
+              border: '1px solid #ddd',
               padding: "15px",
-              borderRadius: "8px",
               width: "350px",
             }}
           >

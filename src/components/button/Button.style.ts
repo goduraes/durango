@@ -25,17 +25,17 @@ const getVariant = (props: any): string => {
   if (props.$variant === 'solid') {
     style += `
       background: ${bgColor}; 
-      color: ${getTextColor(props.$color)};
+      color: ${getTextColor(bgColor)};
       border: none;
-      .DgLoading circle { fill: ${getTextColor(props.$color)}; }
+      .DgLoading circle { fill: ${getTextColor(bgColor)}; }
     `;
   }
   
-  if(props.$variant === 'outlined' || props.$variant === 'dashed') {
+  if(props.$variant === 'outlined') {
     style += `
       background: transparent; 
       color: ${bgColor}; 
-      border: 1px ${(props.$variant === 'outlined' ? 'solid' : 'dashed')} ${bgColor};
+      border: 1px solid ${bgColor};
       .DgLoading circle { fill: ${bgColor}; }
     `;
   }
@@ -52,12 +52,11 @@ const getVariant = (props: any): string => {
   return style;
 }
 
-const Button = styled.button<{ $variant: BaseColorsType | string, $color: BaseColorsType | string,  $size: DgButtonSizeType }>`
+const Button = styled.button<any>`
   ${props => getHeight(props.$size)};
   ${props => getVariant(props)};
   font-size: ${props => props.$size === 'lg' ? '16px' : '14px'};
   padding: 0.25em 1em;
-  border-radius: 8px;
   outline: none;
   cursor: pointer;
   display: flex;
@@ -71,6 +70,7 @@ const Button = styled.button<{ $variant: BaseColorsType | string, $color: BaseCo
   &:disabled {
     cursor: not-allowed;
     pointer-events: none;
+    color: #888 !important;
 
     &:hover {
       opacity: 1;

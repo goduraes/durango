@@ -12,7 +12,7 @@ export default {
   tags: ['autodocs'],
   argTypes: {
     size: { control: 'select', },
-    variant: { control: 'text', },
+    variant: { control: 'select', },
     color: { control: 'text', },
   },
 };

@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { createPortal } from "react-dom";
 import PropTypes from "prop-types";
+
+export interface DgModalType extends React.DetailedHTMLProps<React.HTMLProps<HTMLElement>, HTMLElement>{
+    open?: boolean,
+    onClose?: Function,
+}
 
 const ModalBackdrop = styled.div`
     position: absolute;
@@ -21,22 +26,39 @@ const ModalBackdrop = styled.div`
 const Modal = styled.div`
     max-height: 95%;
     max-width: 95%;
-    overflow: auto;
+    overflow-y: auto;
+    overflow-x: hidden;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 `;
 
-const DgModal = ({ ...props }) => {
+const DgModal = ({ ...props }: DgModalType) => {
+    useEffect(()  => {
+        if(props.open) document.body.style.overflow = "hidden";
+        else document.body.style.overflow = "auto";
+    }, [props.open]);
+
     if (!props.open) return;
-    return <>{createPortal(
-        <ModalBackdrop>
-            <Modal>
-                {props.children}
-            </Modal>
-        </ModalBackdrop>, 
-    document.body)}</>;
+
+    const close = (e: React.MouseEvent<HTMLInputElement>) => {
+        if (!props.onClose) return;
+        const dgModal = e.target as HTMLInputElement;
+        const className = dgModal.getAttribute('class')
+        if(className && className.includes('modal-backdrop')) props.onClose();        
+    }
+
+    return (
+        <>
+            {createPortal(
+                <ModalBackdrop className="modal-backdrop" onClick={close}>
+                    <Modal onClick={() => null}>{props.children}</Modal>
+                </ModalBackdrop>, 
+            document.body)}
+        </>
+    );
 };
 export default DgModal;
 
 DgModal.propTypes = {
-    open: PropTypes.bool
+    open: PropTypes.bool,
+    onClose: PropTypes.func
 };

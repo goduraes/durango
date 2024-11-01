@@ -2,6 +2,7 @@ import { StoryObj } from "@storybook/react";
 import DgModal from "./Modal";
 import React, { useState } from "react";
 import DgButton from "../button/Button";
+import { fn } from '@storybook/test';
 
 export default {
   title: "Components/Modal",
@@ -10,13 +11,16 @@ export default {
     layout: "centered",
   },
   tags: ["autodocs"],
-  argTypes: {},
+  argTypes: {
+    onClose: { description: 'Casoa a função `onClose` não seja passada o modal não sera fechado ao clicar no backdrop do modal.' }
+  },
 };
 
 type Story = StoryObj<any>;
 export const Exemplo: Story = {
   args: {
     open: false,
+    onClose: fn()
   },
 
   render: ({ ...args }) => {
@@ -26,7 +30,7 @@ export const Exemplo: Story = {
       <>
         <DgButton onClick={() => setIsOpen(!isOpen)}>Open modal</DgButton>
 
-        <DgModal open={isOpen}>
+        <DgModal open={isOpen} onClose={() => setIsOpen(false)}>
           <div
             style={{
               background: "#fff",
@@ -48,7 +52,9 @@ export const Exemplo: Story = {
               publishing software like Aldus PageMaker including versions of
               Lorem Ipsum.
             </p>
-            <DgButton size="sm" color="danger" onClick={() => setIsOpen(!isOpen)}>Close modal</DgButton>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <DgButton size="sm" color="danger" onClick={() => setIsOpen(!isOpen)}>Close modal</DgButton>
+            </div>
           </div>
         </DgModal>
       </>
